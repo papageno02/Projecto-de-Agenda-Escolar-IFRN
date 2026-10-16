@@ -1,0 +1,65 @@
+
+{% extends "contas/base.html" %}
+
+{% block titulo %}Cadastro | Agenda IFRN{% endblock %}
+
+{% block conteudo %}
+<section class="cartao">
+    <header class="marca">
+        <div class="simbolo" aria-hidden="true">+</div>
+        <h1>Criar conta</h1>
+        <p>Preencha os dados para acessar<br>
+           a Agenda Online.</p>
+    </header>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="campo">
+            <label for="{{ form.email.id_for_label }}">
+                E-mail
+            </label>
+            {{ form.email }}
+
+            {% for erro in form.email.errors %}
+                <div class="erro-campo">{{ erro }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="campo">
+            <label for="{{ form.senha.id_for_label }}">
+                Criar senha
+            </label>
+            {{ form.senha }}
+
+            {% for erro in form.senha.errors %}
+                <div class="erro-campo">{{ erro }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="campo">
+            <label for="{{ form.confirmar_senha.id_for_label }}">
+                Confirmar senha
+            </label>
+            {{ form.confirmar_senha }}
+
+            {% for erro in form.confirmar_senha.errors %}
+                <div class="erro-campo">{{ erro }}</div>
+            {% endfor %}
+        </div>
+
+        {% for erro in form.non_field_errors %}
+            <div class="mensagem error">{{ erro }}</div>
+        {% endfor %}
+
+        <button class="botao" type="submit">
+            Cadastrar
+        </button>
+    </form>
+
+    <div class="alternativa">
+        Já possui uma conta?<br>
+        <a href="{% url 'login' %}">Voltar para o login</a>
+    </div>
+</section>
+{% endblock %}

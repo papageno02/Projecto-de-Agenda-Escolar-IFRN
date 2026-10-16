@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block titulo %}Agenda IFRN{% endblock %}</title>
+
+    <style>
+        :root {
+            --verde: #166534;
+            --verde-escuro: #14532d;
+            --verde-claro: #dcfce7;
+            --fundo: #f3f7f4;
+            --texto: #1f2937;
+            --cinza: #64748b;
+            --borda: #d1d5db;
+            --branco: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: var(--fundo);
+            color: var(--texto);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .barra-superior {
+            height: 8px;
+            background: var(--verde);
+        }
+
+        .conteudo {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 32px 16px;
+        }
+
+        .cartao {
+            width: 100%;
+            max-width: 430px;
+            padding: 34px;
+            background: var(--branco);
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            box-shadow: 0 10px 30px #14532d12;
+        }
+
+        .marca {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .simbolo {
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            border-radius: 14px;
+            background: var(--verde-claro);
+            color: var(--verde);
+            font-size: 28px;
+        }
+
+        .marca h1 {
+            margin: 0 0 8px;
+            color: var(--verde);
+            font-size: 27px;
+        }
+
+        .marca p {
+            margin: 0;
+            color: var(--cinza);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .campo {
+            margin-bottom: 18px;
+        }
+
+        .campo label {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .campo input {
+            display: block;
+            width: 100%;
+            padding: 12px 13px;
+            border: 1px solid var(--borda);
+            border-radius: 7px;
+            background: white;
+            color: var(--texto);
+            font-size: 15px;
+        }
+
+        .campo input:focus {
+            outline: 2px solid var(--verde);
+            outline-offset: 2px;
+        }
+
+        .botao {
+            display: block;
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 7px;
+            background: var(--verde);
+            color: white;
+            font-size: 15px;
+            font-weight: 700;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .botao:hover {
+            background: var(--verde-escuro);
+        }
+
+        .alternativa {
+            margin-top: 23px;
+            text-align: center;
+            color: var(--cinza);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .alternativa a {
+            color: var(--verde);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .alternativa a:hover {
+            text-decoration: underline;
+        }
+
+        .mensagem {
+            margin-bottom: 18px;
+            padding: 12px;
+            border-radius: 7px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .mensagem.error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .mensagem.success {
+            background: var(--verde-claro);
+            color: var(--verde-escuro);
+        }
+
+        .erro-campo {
+            margin-top: 6px;
+            color: #b91c1c;
+            font-size: 13px;
+        }
+
+        .rodape {
+            padding: 18px;
+            text-align: center;
+            color: var(--cinza);
+            font-size: 12px;
+        }
+
+        @media (max-width: 480px) {
+            .cartao {
+                padding: 25px 20px;
+            }
+
+            .marca h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="barra-superior"></div>
+
+    <main class="conteudo">
+        {% block conteudo %}{% endblock %}
+    </main>
+
+    <footer class="rodape">
+        Agenda Online para Professores · Projeto acadêmico
+    </footer>
+</body>
+</html>

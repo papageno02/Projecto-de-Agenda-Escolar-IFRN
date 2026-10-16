@@ -1,0 +1,62 @@
+
+{% extends "contas/base.html" %}
+
+{% block titulo %}Entrar | Agenda IFRN{% endblock %}
+
+{% block conteudo %}
+<section class="cartao">
+    <header class="marca">
+        <div class="simbolo" aria-hidden="true">▦</div>
+        <h1>Agenda IFRN</h1>
+        <p>Entre para organizar suas turmas,<br>
+           avaliações e compromissos.</p>
+    </header>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="mensagem {{ message.tags }}" role="status">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+
+        <div class="campo">
+            <label for="{{ form.email.id_for_label }}">
+                E-mail cadastrado
+            </label>
+            {{ form.email }}
+
+            {% for erro in form.email.errors %}
+                <div class="erro-campo">{{ erro }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="campo">
+            <label for="{{ form.senha.id_for_label }}">
+                Senha de acesso
+            </label>
+            {{ form.senha }}
+
+            {% for erro in form.senha.errors %}
+                <div class="erro-campo">{{ erro }}</div>
+            {% endfor %}
+        </div>
+
+        {% for erro in form.non_field_errors %}
+            <div class="mensagem error">{{ erro }}</div>
+        {% endfor %}
+
+        <button class="botao" type="submit">
+            Entrar
+        </button>
+    </form>
+
+    <div class="alternativa">
+        Ainda não possui uma conta?<br>
+        <a href="{% url 'cadastro' %}">Criar minha conta</a>
+    </div>
+</section>
+{% endblock %}

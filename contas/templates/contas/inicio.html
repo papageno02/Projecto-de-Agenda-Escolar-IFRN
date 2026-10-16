@@ -1,0 +1,30 @@
+
+{% extends "contas/base.html" %}
+
+{% block titulo %}Início | Agenda IFRN{% endblock %}
+
+{% block conteudo %}
+<section class="cartao">
+    <header class="marca">
+        <div class="simbolo" aria-hidden="true">✓</div>
+        <h1>Bem-vindo!</h1>
+        <p>Você entrou na Agenda Online.</p>
+    </header>
+
+    <p>
+        E-mail conectado:
+        <strong>{{ request.user.email }}</strong>
+    </p>
+
+    <p>
+        Esta será a área inicial do professor.
+        Em breve, aqui estarão suas turmas,
+        avaliações e compromissos.
+    </p>
+
+    <form method="post" action="{% url 'sair' %}">
+        {% csrf_token %}
+        <button class="botao" type="submit">Sair</button>
+    </form>
+</section>
+{% endblock %}
