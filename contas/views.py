@@ -3,6 +3,8 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import get_user_model
 from django.shortcuts import render, redirect
+from django.contrib.auth import logout
+from django.shortcuts import redirect
 
 from .forms import LoginForm, CadastroForm
 
@@ -10,7 +12,7 @@ User = get_user_model()
 
 def login_usuario(request):
     if request.user.is_authenticated:
-        return redirect("inicio")
+        return redirect("index")
 
     form = LoginForm(request.POST or None)
 
@@ -26,7 +28,7 @@ def login_usuario(request):
 
         if usuario is not None:
             login(request, usuario)
-            return redirect("inicio")
+            return redirect("index")
 
         messages.error(
             request,

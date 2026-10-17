@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Online | IFRN</title>
+
+    <style>
+        :root {
+            --verde: #176b3a;
+            --verde-escuro: #104d2b;
+            --verde-claro: #eaf5ed;
+            --fundo: #f4f7f5;
+            --texto: #24332a;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: var(--fundo);
+            color: var(--texto);
+        }
+
+        header {
+            background: var(--verde);
+            color: white;
+            padding: 22px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        header p {
+            margin: 6px 0 0;
+            color: #e0f1e5;
+        }
+
+        .conteudo {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 22px;
+        }
+
+        .boas-vindas {
+            margin-bottom: 28px;
+        }
+
+        .boas-vindas h2 {
+            margin-bottom: 8px;
+            font-size: 28px;
+        }
+
+        .cartoes {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .cartao {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #dce8df;
+            box-shadow: 0 3px 12px #173b2410;
+        }
+
+        .cartao h3 {
+            color: var(--verde);
+            margin-top: 0;
+        }
+
+        .cartao p {
+            line-height: 1.5;
+        }
+
+        .botao {
+            display: inline-block;
+            padding: 10px 15px;
+            background: var(--verde);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .botao:hover {
+            background: var(--verde-escuro);
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #64736a;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .cartoes {
+                grid-template-columns: 1fr;
+            }
+
+            .boas-vindas h2 {
+                font-size: 23px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div>
+            <h1>Agenda Online</h1>
+            <p>IFRN — Área do Professor</p>
+        </div>
+    </header>
+
+    <main class="conteudo">
+        <section class="boas-vindas">
+            <h2>Bem-vindo à sua agenda!</h2>
+            <p>
+                Organize seus compromissos e acompanhe
+                suas atividades acadêmicas em um só lugar.
+            </p>
+        </section>
+
+        <section class="cartoes">
+            <article class="cartao">
+                <h3>Meus compromissos</h3>
+                <p>Consulte e organize os eventos da sua agenda.</p>
+                <a class="botao" href="#">Ver compromissos</a>
+            </article>
+
+            <article class="cartao">
+                <h3>Avaliações</h3>
+                <p>Organize as datas de provas e outras avaliações.</p>
+                <a class="botao" href="#">Ver avaliações</a>
+            </article>
+
+            <article class="cartao">
+                <h3>Novo compromisso</h3>
+                <p>Prepare o espaço para cadastrar um novo evento.</p>
+                <a class="botao" href="{% url 'agenda:criar_evento' %}">Cadastrar evento</a>
+            </article>
+
+            <article class="cartao">
+                <h3>Minhas turmas</h3>
+                <p>Tenha acesso às informações das suas turmas.</p>
+                <a class="botao" href="{% url 'agenda:listar_turmas' %}">Ver turmas</a>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        Agenda Online para Professores — Projeto acadêmico
+    </footer>
+</body>
+</html>

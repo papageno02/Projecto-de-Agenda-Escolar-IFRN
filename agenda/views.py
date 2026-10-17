@@ -1,7 +1,12 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import Turma
 
 def index(request):
-    return HttpResponse('<h1>Sistema de Gerenciamento de Turmas</h1>')
+    return render(request,'agenda/dashboard.html')
 
-# Create your views here.
+def listar_turmas(request):
+    turmas = Turma.objects.all()
+    return render(request, 'agenda/turmas.html', {'turmas': turmas})
+
+def criar_evento(request):
+    return render(request, 'agenda/evento_form.html')

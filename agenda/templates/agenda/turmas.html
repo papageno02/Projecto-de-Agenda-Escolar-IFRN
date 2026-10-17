@@ -1,0 +1,40 @@
+
+{% extends "agenda/base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Minhas turmas</h1>
+
+    <p>
+        Consulte as turmas cadastradas na sua Agenda Online.
+    </p>
+
+    <a href="{% url 'agenda:index' %}">Voltar ao painel</a>
+
+    <hr>
+
+    {% if turmas %}
+        <div class="lista-turmas">
+            {% for turma in turmas %}
+                <div class="card-turma">
+                    <h2>{{ turma.nome }}</h2>
+                    <p>
+                        <strong>Disciplina:</strong>
+                        {{ turma.disciplina }}
+                    </p>
+                    <p>
+                        <strong>Período:</strong>
+                        {{ turma.periodo }}
+                    </p>
+
+                    {% if turma.descricao %}
+                        <p>{{ turma.descricao }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Nenhuma turma cadastrada ainda.</p>
+    {% endif %}
+</div>
+{% endblock %}
