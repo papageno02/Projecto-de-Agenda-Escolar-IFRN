@@ -28,7 +28,7 @@ def login_usuario(request):
 
         if usuario is not None:
             login(request, usuario)
-            return redirect("index")
+            return redirect("agenda:index")
 
         messages.error(
             request,
@@ -79,4 +79,8 @@ def inicio(request):
 def sair_usuario(request):
     if request.method == "POST":
         logout(request)
+    return redirect("login")
+
+def logout_usuario(request):
+    logout(request)
     return redirect("login")
