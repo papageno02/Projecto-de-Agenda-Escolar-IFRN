@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Turma
+from .models import Turma, Evento
 
 admin.site.register(Turma)
-# Register your models here.
+admin.site.register(Evento)

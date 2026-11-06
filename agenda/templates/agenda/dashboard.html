@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -140,42 +140,56 @@
         </section>
 
         <div style="text-align: right; margin-bottom: 20px;">
-    <a href="{% url 'logout' %}"
-       style="display: inline-block;
-              padding: 10px 16px;
-              background-color: #dc3545;
-              color: white;
-              text-decoration: none;
-              border-radius: 6px;
-              font-weight: bold;">
-        Encerrar Sessão
-    </a>
-</div>
+            <a href="{% url 'logout' %}"
+               style="display: inline-block;
+                      padding: 10px 16px;
+                      background-color: #dc3545;
+                      color: white;
+                      text-decoration: none;
+                      border-radius: 6px;
+                      font-weight: bold;">
+                Encerrar Sessão
+            </a>
+        </div>
 
         <section class="cartoes">
+
             <article class="cartao">
                 <h3>Meus compromissos</h3>
                 <p>Consulte e organize os eventos da sua agenda.</p>
-                <a class="botao" href="#">Ver compromissos</a>
+                <a class="botao"
+                   href="{% url 'agenda:meus_compromissos' %}">
+                    Ver compromissos
+                </a>
             </article>
 
             <article class="cartao">
                 <h3>Avaliações</h3>
                 <p>Organize as datas de provas e outras avaliações.</p>
-                <a class="botao" href="#">Ver avaliações</a>
+                <a class="botao"
+                   href="{% url 'agenda:avaliacoes' %}">
+                    Ver avaliações
+                </a>
             </article>
 
             <article class="cartao">
                 <h3>Novo compromisso</h3>
-                <p>Prepare o espaço para cadastrar um novo evento.</p>
-                <a class="botao" href="{% url 'agenda:criar_evento' %}">Cadastrar evento</a>
+                <p>Cadastre provas, trabalhos, reposições e outros eventos.</p>
+                <a class="botao"
+                   href="{% url 'agenda:criar_evento' %}">
+                    Cadastrar evento
+                </a>
             </article>
 
             <article class="cartao">
                 <h3>Minhas turmas</h3>
                 <p>Tenha acesso às informações das suas turmas.</p>
-                <a class="botao" href="{% url 'agenda:listar_turmas' %}">Ver turmas</a>
+                <a class="botao"
+                   href="{% url 'agenda:listar_turmas' %}">
+                    Ver turmas
+                </a>
             </article>
+
         </section>
     </main>
 
@@ -184,3 +198,4 @@
     </footer>
 </body>
 </html>
+```

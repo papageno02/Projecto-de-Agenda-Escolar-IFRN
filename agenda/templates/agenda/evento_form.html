@@ -1,11 +1,177 @@
-{% extends "agenda/base.html" %}
 
-{% block content %}
-<div class="container">
-    <h1>Cadastrar evento</h1>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novo Compromisso | Agenda Online IFRN</title>
+    <style>
+        * { box-sizing: border-box; }
 
-    <p>Esta página será utilizada para cadastrar novos compromissos.</p>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f3f7f4;
+            color: #25352b;
+        }
 
-    <a href="{% url 'agenda:index' %}">Voltar ao painel</a>
-</div>
-{% endblock %}
+        header {
+            background: #176b3b;
+            color: white;
+            padding: 22px max(24px, calc((100% - 1000px) / 2));
+        }
+
+        header h1 { margin: 0 0 6px; }
+        header p { margin: 0; }
+
+        main {
+            max-width: 850px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 28px;
+            border: 1px solid #d8e7dc;
+            border-radius: 12px;
+            box-shadow: 0 4px 14px #183c2510;
+        }
+
+        .campo { margin-bottom: 18px; }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #bdcfc2;
+            border-radius: 6px;
+            font: inherit;
+            background: white;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: 2px solid #87bd99;
+            border-color: #176b3b;
+        }
+
+        .linha {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .acoes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .botao {
+            display: inline-block;
+            padding: 12px 18px;
+            border: 0;
+            border-radius: 6px;
+            background: #176b3b;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .secundario {
+            background: #e7eee9;
+            color: #25352b;
+        }
+
+        .erro { color: #b42318; font-size: 14px; }
+        .mensagem {
+            padding: 12px;
+            background: #e5f5e9;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 24px;
+            color: #64756a;
+        }
+
+        @media (max-width: 600px) {
+            .linha { grid-template-columns: 1fr; gap: 0; }
+            .card { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Agenda Online</h1>
+        <p>IFRN — Área do Professor</p>
+    </header>
+
+    <main>
+        <p><a href="{% url 'agenda:index' %}">← Voltar ao início</a></p>
+
+        <section class="card">
+            <h2>Novo Compromisso</h2>
+            <p>Preencha os dados para cadastrar um novo evento.</p>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="mensagem">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+
+            <form method="post">
+                {% csrf_token %}
+
+                {% if form.non_field_errors %}
+                    <div class="erro">{{ form.non_field_errors }}</div>
+                {% endif %}
+
+                {% for field in form %}
+                    <div class="campo">
+                        <label for="{{ field.id_for_label }}">
+                            {{ field.label }}
+                            {% if field.name == "turma" %}
+                                <span style="font-weight: normal;">
+                                    (obrigatória para avaliações)
+                                </span>
+                            {% endif %}
+                        </label>
+
+                        {{ field }}
+
+                        {% for error in field.errors %}
+                            <div class="erro">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+
+                <div class="acoes">
+                    <button type="submit" class="botao">
+                        Salvar evento
+                    </button>
+
+                    <a href="{% url 'agenda:index' %}"
+                       class="botao secundario">
+                        Cancelar
+                    </a>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        Agenda Online para Professores — Projeto acadêmico
+    </footer>
+</body>
+</html>

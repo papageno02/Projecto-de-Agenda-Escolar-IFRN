@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliações | Agenda Online</title>
+    <style>
+        body { margin: 0; font-family: Arial, sans-serif; background: #f3f7f4; color: #25352b; }
+        header { background: #176b3b; color: white; padding: 22px max(20px, calc((100% - 1000px) / 2)); }
+        main { max-width: 1000px; margin: 32px auto; padding: 0 20px; }
+        .card { background: white; padding: 20px; margin: 16px 0; border: 1px solid #d8e7dc; border-radius: 10px; }
+        .botao { display: inline-block; padding: 11px 16px; background: #176b3b; color: white; text-decoration: none; border-radius: 6px; font-weight: bold; }
+        .acoes { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tipo { color: #176b3b; font-weight: bold; }
+        .vazio { color: #64756a; }
+        footer { text-align: center; padding: 24px; color: #64756a; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Agenda Online</h1>
+        <p>IFRN — Área do Professor</p>
+    </header>
+
+    <main>
+        <p><a href="{% url 'agenda:index' %}">← Voltar ao início</a></p>
+        <h2>Avaliações</h2>
+        <p>Organize as provas, os trabalhos avaliativos e as reposições.</p>
+
+        <p>
+            <a class="botao" href="{% url 'agenda:criar_evento' %}">
+                + Cadastrar avaliação
+            </a>
+        </p>
+
+        {% for evento in eventos %}
+            <article class="card">
+                <h3>{{ evento.titulo }}</h3>
+                <p class="tipo">{{ evento.get_tipo_display }}</p>
+                <p><strong>Data:</strong> {{ evento.data|date:"d/m/Y" }}</p>
+                <p>
+                    <strong>Horário:</strong>
+                    {{ evento.horario_inicio|time:"H:i" }} –
+                    {{ evento.horario_fim|time:"H:i" }}
+                </p>
+                <p><strong>Turma:</strong> {{ evento.turma }}</p>
+
+                {% if evento.local %}
+                    <p><strong>Local:</strong> {{ evento.local }}</p>
+                {% endif %}
+
+                {% if evento.descricao %}
+                    <p><strong>Observações:</strong> {{ evento.descricao }}</p>
+                {% endif %}
+            </article>
+        {% empty %}
+            <section class="card">
+                <p class="vazio">Nenhuma avaliação cadastrada.</p>
+                <p>As provas, os trabalhos e as reposições aparecerão aqui.</p>
+            </section>
+        {% endfor %}
+
+        <div class="acoes">
+            <a class="botao" href="{% url 'agenda:meus_compromissos' %}">Meus compromissos</a>
+            <a class="botao" href="{% url 'agenda:index' %}">Página inicial</a>
+        </div>
+    </main>
+
+    <footer>Agenda Online para Professores — Projeto acadêmico</footer>
+</body>
+</html>
