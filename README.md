@@ -69,53 +69,49 @@ Siga as etapas abaixo para obter e executar o projeto em sua máquina.
 
 Abra o terminal e execute:
 
-git clone URL_DO_REPOSITORIO
+    git clone [URL_DO_REPOSITORIO](https://github.com/papageno02/Projecto-de-Agenda-Escolar-IFRN.git)
 
 Substitua "URL_DO_REPOSITORIO" pelo endereço do repositório no GitHub.
 
 6.2. Acessar a pasta do projeto
 
-cd PROJECTO-AGENDA
+    cd PROJECTO-AGENDA
 
 6.3. Criar um ambiente virtual
 
-python -m venv venv
+    python -m venv venv
 
 6.4. Ativar o ambiente virtual
 
-Windows:
+  Windows:
 
-venv\Scripts\activate
+    venv\Scripts\activate
 
-Linux/macOS:
+  Linux/macOS:
 
-source venv/bin/activate
+    source venv/bin/activate
 
 6.5. Instalar as dependências
 
 Caso o repositório possua o arquivo "requirements.txt", execute:
 
-pip install -r requirements.txt
+    pip install -r requirements.txt
 
 Caso esse arquivo ainda não esteja disponível, instale a versão do Django utilizada no desenvolvimento:
 
-pip install Django==6.1
+    pip install Django==6.1
 
 6.6. Aplicar as migrações do banco de dados
 
-python manage.py migrate
+    python manage.py migrate
 
 6.7. Verificar a configuração do projeto
 
-python manage.py check
+    python manage.py check
 
 6.8. Iniciar o servidor de desenvolvimento
 
-python manage.py runserver
-
-Após iniciar o servidor, acesse o endereço abaixo no navegador:
-
-http://127.0.0.1:8000/
+    python manage.py runserver
 
 Para encerrar o servidor, utilize "CTRL + C" no terminal.
 
