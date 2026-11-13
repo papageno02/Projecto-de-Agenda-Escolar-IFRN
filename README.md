@@ -71,8 +71,6 @@ Abra o terminal e execute:
 
     git clone https://github.com/papageno02/Projecto-de-Agenda-Escolar-IFRN.git
 
-Substitua "URL_DO_REPOSITORIO" pelo endereço do repositório no GitHub.
-
 6.2. Acessar a pasta do projeto
 
     cd PROJECTO-AGENDA
@@ -105,7 +103,7 @@ Caso esse arquivo ainda não esteja disponível, instale a versão do Django uti
 
     python manage.py migrate
 
-6.7. Verificar a configuração do projeto
+6.7. Verificar a configuração do projeto (Opcional)
 
     python manage.py check
 
@@ -113,7 +111,7 @@ Caso esse arquivo ainda não esteja disponível, instale a versão do Django uti
 
     python manage.py runserver
 
-Para encerrar o servidor, utilize "CTRL + C" no terminal.
+Rodando tudo certo, para encerrar o servidor, utilize "CTRL + C" no terminal.
 
 7. Estrutura do projeto
 
