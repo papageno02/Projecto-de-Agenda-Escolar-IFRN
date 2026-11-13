@@ -69,7 +69,7 @@ Siga as etapas abaixo para obter e executar o projeto em sua máquina.
 
 Abra o terminal e execute:
 
-    git clone [URL_DO_REPOSITORIO](https://github.com/papageno02/Projecto-de-Agenda-Escolar-IFRN.git)
+    git clone https://github.com/papageno02/Projecto-de-Agenda-Escolar-IFRN.git
 
 Substitua "URL_DO_REPOSITORIO" pelo endereço do repositório no GitHub.
 
